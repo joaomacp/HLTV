@@ -20,6 +20,14 @@ export interface EventFormat {
   description: string
 }
 
+export interface EventPlayerStats {
+  id: string,
+  name: string,
+  country: string,
+  team: string,
+  rating: string
+}
+
 export interface FullEvent {
   id: number
   name: string
@@ -32,4 +40,5 @@ export interface FullEvent {
   formats: EventFormat[]
   relatedEvents: Event[]
   mapPool: MapSlug[]
+  playerStats: EventPlayerStats[]
 }

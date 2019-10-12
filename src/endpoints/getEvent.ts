@@ -8,7 +8,7 @@ export const getEvent = (config: HLTVConfig) => async ({
 }: {
   id: number
 }): Promise<FullEvent> => {
-  const $ = await fetchPage(`${config.hltvUrl}/events/${id}/-`, config.loadPage)
+  var $ = await fetchPage(`${config.hltvUrl}/events/${id}/-`, config.loadPage)
 
   const name = $('.eventname').text()
   const dateStart =
@@ -99,6 +99,19 @@ export const getEvent = (config: HLTVConfig) => async ({
     getMapSlug(mapEl.find('.map-pool-map-name').text())
   )
 
+  $ = await fetchPage(`${config.hltvUrl}/stats/players?event=${id}`, config.loadPage)
+
+  const playerStats = toArray($('tbody>tr')).map(playerStat => ({
+    id: playerStat.find('.playerCol').find('a').attr('href'),
+    name: playerStat.find('.playerCol').find('a').text(),
+    country: playerStat.find('.playerCol').find('.flag').attr('src'),
+    team: playerStat.find('.teamCol').find('a').text(),
+    rating: playerStat.find('.ratingCol').text()
+  }))
+
+  // Remove empty player (first element)
+  playerStats.splice(0, 1);
+
   return {
     id,
     name,
@@ -110,6 +123,7 @@ export const getEvent = (config: HLTVConfig) => async ({
     prizeDistribution,
     formats,
     relatedEvents,
-    mapPool
+    mapPool,
+    playerStats
   }
 }
