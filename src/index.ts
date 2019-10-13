@@ -25,6 +25,7 @@ import { ThreadCategory } from './enums/ThreadCategory'
 import { EventSize } from './enums/EventSize'
 import { WinType } from './enums/WinType'
 import { getEvents } from './endpoints/getEvents'
+import { getEventMaps } from './endpoints/getEventMaps'
 
 export class HLTVFactory {
   constructor(private readonly config: HLTVConfig) { }
@@ -45,6 +46,7 @@ export class HLTVFactory {
   getPlayerByName = getPlayerByName(this.config)
   getEvent = getEvent(this.config)
   getEvents = getEvents(this.config)
+  getEventMaps = getEventMaps(this.config)
   getPlayerStats = getPlayerStats(this.config)
   getPlayerRanking = getPlayerRanking(this.config)
 
