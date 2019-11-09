@@ -26,6 +26,7 @@ import { EventSize } from './enums/EventSize'
 import { WinType } from './enums/WinType'
 import { getEvents } from './endpoints/getEvents'
 import { getEventMaps } from './endpoints/getEventMaps'
+import { getTeamMapStats } from './endpoints/getTeamMapStats'
 
 export class HLTVFactory {
   constructor(private readonly config: HLTVConfig) { }
@@ -47,6 +48,7 @@ export class HLTVFactory {
   getEvent = getEvent(this.config)
   getEvents = getEvents(this.config)
   getEventMaps = getEventMaps(this.config)
+  getTeamMapStats = getTeamMapStats(this.config)
   getPlayerStats = getPlayerStats(this.config)
   getPlayerRanking = getPlayerRanking(this.config)
 
