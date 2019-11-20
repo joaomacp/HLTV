@@ -106,7 +106,9 @@ export const getEvent = (config: HLTVConfig) => async ({
     name: playerStat.find('.playerCol').find('a').text(),
     country: playerStat.find('.playerCol').find('.flag').attr('src'),
     team: playerStat.find('.teamCol').find('a').text(),
-    rating: playerStat.find('.ratingCol').text()
+    rating: playerStat.find('.ratingCol').text(),
+    mapsPlayed: toArray(playerStat.find('.statsDetail'))[0] ? toArray(playerStat.find('.statsDetail'))[0].text() : "0",
+    kdDiff: playerStat.find('.kdDiffCol').text()
   }))
 
   // Remove empty player (first element)
